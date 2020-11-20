@@ -7,15 +7,18 @@ class Markov {
   constructor(props) {
     this.props = props;
     if (!this.props.input) {
-      throw new Error('input was empty!');
+      throw new Error("input was empty!");
     }
     this.terminals = {};
     this.startWords = [];
     this.wordStats = {};
-    this.bannedTerminals = (props.bannedTerminals && props.bannedTerminals.length) ? props.bannedTerminals.map((word) => word.toLowerCase()) : [];
+    this.bannedTerminals =
+      props.bannedTerminals && props.bannedTerminals.length
+        ? props.bannedTerminals.map((word) => word.toLowerCase())
+        : [];
 
     this.props.input.forEach((e, i, a) => {
-      const words = e.split(' ');
+      const words = e.split(" ");
       const lastWord = words[words.length - 1];
       const firstWord = words[0];
 
@@ -60,10 +63,12 @@ class Markov {
     });
 
     for (const word in this.terminals) {
-      if (this.terminals[word] === '' || !this.terminals[word]) { delete this.terminals[word]; }
+      if (this.terminals[word] === "" || !this.terminals[word]) {
+        delete this.terminals[word];
+      }
     }
-    delete this.terminals[''];
-    delete this.wordStats[''];
+    delete this.terminals[""];
+    delete this.wordStats[""];
   }
 
   isBannedTerminal(word) {
@@ -92,17 +97,21 @@ class Markov {
       const nextWords = this.wordStats[word.toLowerCase()];
       word = this.choice(nextWords);
       chain.push(word);
-      if (chain.length > minLength && (this.terminals.hasOwnProperty(word) && !this.isBannedTerminal(word))) {
+      if (
+        chain.length > minLength &&
+        this.terminals.hasOwnProperty(word) &&
+        !this.isBannedTerminal(word)
+      ) {
         break;
       }
     }
-    if (this.props.input.includes(chain.join(' '))) {
+    if (this.props.input.includes(chain.join(" "))) {
       return this.makeChain(minLength);
     }
     if (chain.length < minLength) {
       return this.makeChain(minLength);
     }
-    return chain.join(' ');
+    return chain.join(" ");
   }
 }
 

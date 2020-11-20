@@ -1,34 +1,36 @@
 {
-    "name": "markov-generator",
-    "version": "1.2.3",
-    "description": "Dependency-free Markov chain generator.",
-    "main": "index.js",
-    "scripts": {
-        "test": "./node_modules/.bin/mocha --reporter spec tests/test.js",
-        "lint": "eslint ."
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/maximumdata/markov-generator.git"
-    },
-    "keywords": [
-        "markov",
-        "markov",
-        "chains",
-        "markov",
-        "generator"
-    ],
-    "author": "Mike Dettmer <mike@mikedettmer.com> (https://mikedettmer.com)",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/maximumdata/markov-generator/issues"
-    },
-    "homepage": "https://github.com/maximumdata/markov-generator#readme",
-    "devDependencies": {
-        "chai": "^3.5.0",
-        "eslint": "^7.13.0",
-        "eslint-config-airbnb-base": "^14.2.1",
-        "eslint-plugin-import": "^2.22.1",
-        "mocha": "^3.1.2"
-    }
+  "name": "markov-generator",
+  "version": "1.2.3",
+  "description": "Dependency-free Markov chain generator.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec tests/test.js",
+    "lint": "eslint .",
+    "format": "prettier . --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maximumdata/markov-generator.git"
+  },
+  "keywords": [
+    "markov",
+    "markov",
+    "chains",
+    "markov",
+    "generator"
+  ],
+  "author": "Mike Dettmer <mike@mikedettmer.com> (https://mikedettmer.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maximumdata/markov-generator/issues"
+  },
+  "homepage": "https://github.com/maximumdata/markov-generator#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "^3.1.2",
+    "prettier": "^2.2.0"
+  }
 }
