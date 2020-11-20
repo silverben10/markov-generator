@@ -10,5 +10,8 @@ module.exports = {
   },
   rules: {
     quotes: ["error", "double"],
+    "max-len": ["error", { code: 100, ignoreComments: true }],
+    "operator-linebreak": 0,
+    "no-restricted-syntax": 0,
   },
 };

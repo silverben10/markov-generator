@@ -1,8 +1,8 @@
-const { expect } = require("chai");
+const { expect, describe, it } = require("chai");
 const MarkovGen = require("../index.js");
 
 describe("Markov Chain Generator", () => {
-  const testInput = [
+  let testInput = [
     "Test sentence number 1",
     "This is another test sentence",
     "I'm test sentence number two!",
@@ -50,7 +50,7 @@ describe("Markov Chain Generator", () => {
   });
 
   it("returns a string with proper letter casing", () => {
-    const testInput = ["Test seNtence", "anothEr teSt sentenCe", "A thIRd tEST seNtence"];
+    testInput = ["Test seNtence", "anothEr teSt sentenCe", "A thIRd tEST seNtence"];
     const string = new MarkovGen({
       input: testInput,
       minLength: 2,

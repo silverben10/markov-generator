@@ -17,7 +17,7 @@ class Markov {
         ? props.bannedTerminals.map((word) => word.toLowerCase())
         : [];
 
-    this.props.input.forEach((e, i, a) => {
+    this.props.input.forEach((e) => {
       const words = e.split(" ");
       const lastWord = words[words.length - 1];
       const firstWord = words[0];
@@ -25,7 +25,7 @@ class Markov {
       // if this.terminals contains the last word in this sentence, add to it's counter
       // otherwise, create the property on this.terminals and set it to 1
       if (this.terminals[lastWord]) {
-        this.terminals[lastWord]++;
+        this.terminals[lastWord] += 1;
       } else {
         this.terminals[lastWord] = 1;
       }
@@ -33,11 +33,12 @@ class Markov {
       // this function tests to see if this.startWords already contains the first word or not
       // we can't use Array.prototype.includes, because when comparing each element in this.startWords to the first word, we need to compare them as lowercase
       const checkWordNotInStartWords = (refWord) => {
-        this.startWords.forEach((elem, ind, arr) => {
-          if (elem.toLowerCase() === firstWord.toLowerCase()) {
+        for (const word of this.startWords) {
+          if (word.toLowerCase() === refWord.toLowerCase()) {
             return false;
           }
-        });
+        }
+
         return true;
       };
 
@@ -53,7 +54,7 @@ class Markov {
         // first check to see if there even IS a next word
         // we store all of the keys in this.wordStats as lowercase to make the function makeChain case insensitive
         if (ar[it + 1]) {
-          if (this.wordStats.hasOwnProperty(el.toLowerCase())) {
+          if (Object.prototype.hasOwnProperty.call(this.wordStats, el.toLowerCase())) {
             this.wordStats[el.toLowerCase()].push(ar[it + 1]);
           } else {
             this.wordStats[el.toLowerCase()] = [ar[it + 1]];
@@ -67,6 +68,7 @@ class Markov {
         delete this.terminals[word];
       }
     }
+
     delete this.terminals[""];
     delete this.wordStats[""];
   }
@@ -80,7 +82,7 @@ class Markov {
    * @param {array} a - An array to randomly choose an element from
    * @return {string} The selected element of the array
    */
-  choice(a) {
+  static choice(a) {
     return a[Math.floor(a.length * Math.random())];
   }
 
@@ -93,13 +95,13 @@ class Markov {
     let word = this.choice(this.startWords);
     const chain = [word];
 
-    while (this.wordStats.hasOwnProperty(word.toLowerCase())) {
+    while (Object.prototype.hasOwnProperty.call(this.wordStats, word.toLowerCase())) {
       const nextWords = this.wordStats[word.toLowerCase()];
       word = this.choice(nextWords);
       chain.push(word);
       if (
         chain.length > minLength &&
-        this.terminals.hasOwnProperty(word) &&
+        Object.prototype.hasOwnProperty.call(this.terminals, word) &&
         !this.isBannedTerminal(word)
       ) {
         break;
